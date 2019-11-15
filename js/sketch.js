@@ -25,8 +25,9 @@ function setup() {
     canvas = createCanvas(COLS * SQUARE_SIZE, ROWS * SQUARE_SIZE);
     canvas.parent("sketch_view");
 
-    c_pos = createVector(~~(COLS / 2), ~~(ROWS / 2));
     grid = new Grid(COLS, ROWS);
+    c_pos = createVector(~~(COLS / 2), ~~(ROWS / 2));
+    grid.setState(c_pos.x, c_pos.y, 0);
 }
 
 function moveAnt(x, y) {
@@ -36,9 +37,10 @@ function moveAnt(x, y) {
     let curr_state = grid.getState(x, y)
     grid.setState(x, y, curr_state ^ 1);
     let newPos = movement[direction];
-    c_pos.x += ((-1) ** (curr_state + 1)) * newPos[0];
-    c_pos.y += ((-1) ** (curr_state + 1)) * newPos[1];
-    direction = (direction + 1) % 4;
+    let multiplier = ((-1) ** (curr_state + 1));
+    c_pos.x += multiplier * newPos[0];
+    c_pos.y += multiplier * newPos[1];  
+    direction = (4 + direction + multiplier) % 4;
 }
 
 function draw() {
