@@ -1,4 +1,4 @@
-class MathUtils {
+class Utils {
 
     /**
          * Check if a number is in a range
@@ -13,32 +13,6 @@ class MathUtils {
     }
 
     /**
-     * Generate a random number (float) in a specified range
-     * 
-     * @param {Number} min 
-     * @param {Number} max 
-     * @returns {Number}
-     */
-    static randRange(min, max) {
-        return (Math.random() * (max - min)) + min;
-    }
-
-    /**
-     * Return closest multiple of divisor to given value
-     * 
-     * @param {Number} value 
-     * @param {Number} divisor 
-     * @returns {Number}
-     */
-    static snap(value, divisor) {
-        return ~~(value / divisor);
-    }
-
-}
-
-class Utils {
-
-    /**
      * Check a position is on the board
      * 
      * @param {Number} x 
@@ -46,7 +20,7 @@ class Utils {
      * @returns {Boolean}
      */
     static isValidMove(x, y) {
-        return MathUtils.inRange(y, 0, COLS) && MathUtils.inRange(x, 0, ROWS);
+        return this.inRange(y, 0, COLS) && this.inRange(x, 0, ROWS);
     }
 
     /**
